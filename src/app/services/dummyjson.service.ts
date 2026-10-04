@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Comment, CommentsResponse } from '../models/comment.interface';
 import { Post, PostsResponse } from '../models/post.interface';
@@ -19,11 +19,9 @@ export class DummyjsonService {
   constructor(private http: HttpClient) {}
 
   searchUser(username: string): Observable<UsersResponse> {
-    const params = new HttpParams()
-      .set('key', 'username')
-      .set('value', username);
-
-    return this.http.get<UsersResponse>(`${this.apiUrl}/users/filter`, { params });
+    return this.http.get<UsersResponse>(
+      `${this.apiUrl}/users/filter?key=username&value=${encodeURIComponent(username)}`
+    );
   }
 
   getPostsByUser(userId: number): Observable<PostsResponse> {
