@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  min-width: 320px;
+  margin: 0;
+  color: #303934;
+  font-family: Arial, Helvetica, sans-serif;
+}

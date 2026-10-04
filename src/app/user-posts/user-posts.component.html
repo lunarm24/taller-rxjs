@@ -1,0 +1,59 @@
+<section class="posts-section">
+  <div class="posts-heading">
+    <h2>Publicaciones</h2>
+    <span>{{ posts.length }} {{ posts.length === 1 ? 'post' : 'posts' }}</span>
+  </div>
+
+  @if (errorMessage) {
+    <div class="alert alert-warning" role="alert">{{ errorMessage }}</div>
+  }
+
+  <div class="post-list">
+    @for (post of posts; track post.id) {
+      <article class="post-card">
+        <div class="post-heading">
+          <h3>{{ post.title }}</h3>
+          <div class="reaction-counts" aria-label="Reacciones de la publicación">
+            <span class="reaction-likes" title="Me gusta">
+              <span aria-hidden="true">👍</span> {{ post.reactions.likes }}
+            </span>
+            <span class="reaction-dislikes" title="No me gusta">
+              <span aria-hidden="true">👎</span> {{ post.reactions.dislikes }}
+            </span>
+          </div>
+        </div>
+        <p class="post-body">{{ post.body }}</p>
+
+        @if (post.tags.length > 0) {
+          <div class="post-tags">
+            @for (tag of post.tags; track tag) {
+              <span>#{{ tag }}</span>
+            }
+          </div>
+        }
+
+        <div class="comments">
+          <h4>Comentarios</h4>
+
+          @if (commentsForPost(post.id).length > 0) {
+            @for (comment of commentsForPost(post.id); track comment.id) {
+              <div class="comment">
+                <div class="comment-heading">
+                  <span class="comment-author">{{ comment.user.fullName }}</span>
+                  @if (comment.likes > 0) {
+                    <span class="comment-likes"><span aria-hidden="true">♥</span> {{ comment.likes }}</span>
+                  }
+                </div>
+                <p>{{ comment.body }}</p>
+              </div>
+            }
+          } @else if (commentsLoading) {
+            <p class="comment-status">Cargando comentarios...</p>
+          } @else {
+            <p class="comment-status">Sin comentarios.</p>
+          }
+        </div>
+      </article>
+    }
+  </div>
+</section>

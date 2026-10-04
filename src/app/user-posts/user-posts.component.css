@@ -1,0 +1,151 @@
+.posts-section {
+  margin-top: 0.6rem;
+}
+
+.posts-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.posts-heading h2 {
+  margin: 0;
+  color: #303934;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.posts-heading > span {
+  color: #858d86;
+  font-size: 0.75rem;
+}
+
+.post-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.post-card {
+  padding: 1.15rem 1.2rem;
+  border: 1px solid #e1e2dc;
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(39 47 42 / 4%);
+}
+
+.post-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.post-heading h3 {
+  margin: 0 0 0.55rem;
+  color: #303934;
+  font-size: 1.03rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.reaction-counts {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 0 0 auto;
+  color: #707b73;
+  font-size: 0.78rem;
+}
+
+.reaction-counts > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.reaction-counts > span > span {
+  font-size: 0.85rem;
+}
+
+.reaction-dislikes {
+  color: #8b6462;
+}
+
+.comment-likes span {
+  color: #d36d67;
+}
+
+.post-body {
+  margin: 0 0 0.8rem;
+  color: #636b65;
+  font-size: 0.87rem;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.post-tags span {
+  padding: 0.22rem 0.5rem;
+  border-radius: 999px;
+  color: #5c7063;
+  background: #edf1ed;
+  font-size: 0.68rem;
+}
+
+.comments {
+  padding: 0.8rem 0.9rem;
+  border-radius: 0.55rem;
+  background: #f6f7f5;
+}
+
+.comments h4 {
+  margin: 0 0 0.35rem;
+  color: #858d86;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.comment {
+  padding: 0.45rem 0;
+  color: #5c645e;
+  font-size: 0.8rem;
+}
+
+.comment + .comment {
+  border-top: 1px solid #e8eae6;
+}
+
+.comment-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.comment-author {
+  color: #39443d;
+  font-weight: 600;
+}
+
+.comment-likes {
+  color: #747d76;
+  font-size: 0.72rem;
+}
+
+.comment p,
+.comment-status {
+  margin: 0.15rem 0 0;
+}
+
+.comment-status {
+  color: #818981;
+  font-size: 0.78rem;
+}

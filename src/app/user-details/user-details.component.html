@@ -1,0 +1,27 @@
+<section class="profile-card">
+  <div class="profile-main">
+    <img
+      class="profile-image"
+      [src]="user?.image"
+      [alt]="'Foto de ' + user?.firstName"
+    >
+    <div class="identity">
+      <h3>{{ user?.firstName }} {{ user?.lastName }}</h3>
+      <p class="username">&#64;{{ user?.username }}</p>
+      <div class="user-facts">
+        <div>
+          <span class="detail-label">Correo</span>
+          <span class="detail-value">{{ user?.email }}</span>
+        </div>
+        <div>
+          <span class="detail-label">Teléfono</span>
+          <span class="detail-value">{{ user?.phone }}</span>
+        </div>
+        <div>
+          <span class="detail-label">Edad</span>
+          <span class="detail-value">{{ user?.age }} años</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

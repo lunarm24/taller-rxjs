@@ -1,59 +1,27 @@
-# TallerRxjs
+# Taller RxJS: búsqueda de perfiles
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
+Aplicación Angular de una sola página para consultar perfiles en [DummyJSON](https://dummyjson.com/). El componente principal consulta la API usando `HttpClient` y se suscribe a los resultados con RxJS. Los componentes de perfil y publicaciones reciben sus datos con `@Input`.
 
-## Development server
-
-To start a local development server, run:
+## Ejecutar el proyecto
 
 ```bash
-ng serve
+npm install
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abre `http://localhost:4200/` y busca un username. Por ejemplo, `emilys`.
 
-## Code scaffolding
+> El username `atuny0` que aparece como ejemplo en el enunciado ya no está disponible en la API actual; `emilys` sí existe.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Consultas
+
+- `GET /users/filter?key=username&value={username}` para buscar el usuario.
+- `GET /posts/user/{userId}` para cargar sus publicaciones.
+- `GET /comments/post/{postId}` para cargar los comentarios de cada publicación.
+
+## Verificar
 
 ```bash
-ng generate component component-name
+npm test -- --watch=false
+npm run build
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
