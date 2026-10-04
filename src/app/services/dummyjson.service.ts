@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CommentsResponse } from '../models/comment.interface';
-import { PostsResponse } from '../models/post.interface';
-import { UsersResponse } from '../models/user.interface';
+import { Observable, of } from 'rxjs';
+import { Comment, CommentsResponse } from '../models/comment.interface';
+import { Post, PostsResponse } from '../models/post.interface';
+import { User, UsersResponse } from '../models/user.interface';
+import { map, switchMap } from 'rxjs/operators';
+
+export type UserProfileResult =
+  | { found: false }
+  | { found: true; user: User; posts: Post[]; comments: Comment[] };
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +32,46 @@ export class DummyjsonService {
 
   getCommentsByPost(postId: number): Observable<CommentsResponse> {
     return this.http.get<CommentsResponse>(`${this.apiUrl}/comments/post/${postId}`);
+  }
+
+  getProfileByUsername(username: string): Observable<UserProfileResult> {
+    return this.searchUser(username).pipe(
+      switchMap((usersResponse) => {
+        const user = usersResponse.users[0];
+        if (!user) {
+          return of<UserProfileResult>({ found: false });
+        }
+
+        return this.getPostsByUser(user.id).pipe(
+          switchMap((postsResponse) =>
+            this.getCommentsForPosts(postsResponse.posts).pipe(
+              map((comments) => ({
+                found: true as const,
+                user,
+                posts: postsResponse.posts,
+                comments
+              }))
+            )
+          )
+        );
+      })
+    );
+  }
+
+  private getCommentsForPosts(
+    posts: Post[],
+    postIndex = 0,
+    comments: Comment[] = []
+  ): Observable<Comment[]> {
+    if (postIndex >= posts.length) {
+      return of(comments);
+    }
+
+    return this.getCommentsByPost(posts[postIndex].id).pipe(
+      map((response) => [...comments, ...response.comments]),
+      switchMap((updatedComments) =>
+        this.getCommentsForPosts(posts, postIndex + 1, updatedComments)
+      )
+    );
   }
 }
