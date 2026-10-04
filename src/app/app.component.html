@@ -9,19 +9,22 @@
     </header>
 
     <section class="search-section">
-      <form (ngSubmit)="searchUser()">
+      <form [formGroup]="searchForm" (ngSubmit)="searchUser()">
         <label for="username">Buscar usuario</label>
         <div class="search-control">
           <span class="search-icon" aria-hidden="true">&#64;</span>
           <input
             id="username"
-            name="username"
             type="text"
+            formControlName="username"
             placeholder="Username, por ejemplo emilys"
             autocomplete="off"
-            [(ngModel)]="username"
           >
-          <button class="btn-search" type="submit" [disabled]="loading || !username.trim()">
+          <button
+            class="btn-search"
+            type="submit"
+            [disabled]="!searchForm.controls.username.value.trim()"
+          >
             @if (loading) {
               <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
               Buscando
