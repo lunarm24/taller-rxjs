@@ -15,10 +15,10 @@
           <h3>{{ post.title }}</h3>
           <div class="reaction-counts" aria-label="Reacciones de la publicación">
             <span class="reaction-likes" title="Me gusta">
-              <span aria-hidden="true">👍</span> {{ post.reactions.likes }}
+              <i class="bi bi-hand-thumbs-up" aria-hidden="true"></i> {{ post.reactions.likes }}
             </span>
             <span class="reaction-dislikes" title="No me gusta">
-              <span aria-hidden="true">👎</span> {{ post.reactions.dislikes }}
+              <i class="bi bi-hand-thumbs-down" aria-hidden="true"></i> {{ post.reactions.dislikes }}
             </span>
           </div>
         </div>
@@ -41,7 +41,7 @@
                 <div class="comment-heading">
                   <span class="comment-author">{{ comment.user.fullName }}</span>
                   @if (comment.likes > 0) {
-                    <span class="comment-likes"><span aria-hidden="true">♥</span> {{ comment.likes }}</span>
+                    <span class="comment-likes"><i class="bi bi-heart-fill text-danger" aria-hidden="true"></i> {{ comment.likes }}</span>
                   }
                 </div>
                 <p>{{ comment.body }}</p>
